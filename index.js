@@ -59,14 +59,19 @@ client.on('message', async msg => { // eslint-disable-line
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
-					var emb2 = new Discord.RichEmbed()
-					.setAuthor('Seleção de músicas', client.user.avatarURL)
-					.setDescription(videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n'))
-					.setTimestamp()
-					.setFooter('Por favor envie um número para selecionar a música de 1 à 10.', msg.author.displayAvatarURL)
-						 msg.channel.send(emb2)
-	
-					
+					//var emb2 = new Discord.RichEmbed()
+					//.setAuthor('Seleção de músicas', client.user.avatarURL)
+					//.setDescription(videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n'))
+					//.setTimestamp()
+					//.setFooter('Por favor envie um número para selecionar a música de 1 à 10.', msg.author.displayAvatarURL)
+						// msg.channel.send(emb2)
+		msg.channel.send(`
+__**Song selection:**__
+
+${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+
+Please provide a value to select one of the search results ranging from 1-10.
+					`);
 					// eslint-disable-next-line max-depth
 					try {
 						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
