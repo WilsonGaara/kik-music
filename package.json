@@ -5,7 +5,7 @@
   "description": "oi",
   "main": "index.js",
   "dependencies": {
-    "accuweather-simple": "^0.1.0",
+    "ffmpeg-binaries": "^4.0.0",
     "ms": "^2.1.1",
     "discord.js": "^11.3.2",
     "google": "^2.1.0",
@@ -18,7 +18,7 @@
     "moment": "^2.22.1",
     "steamapi": "^2.0.2",
   "simple-youtube-api": "^5.0.2",
-    "ffmpeg-binaries": "^4.0.0",
+ 
     "weather-js": "^2.0.0"
   },
   "devDependencies": {},
