@@ -1,33 +1,30 @@
+
 {
-  "name": "yumeko",
-  "version": "0.1.0",
-  "description": "Tava na github e eu peguei xD ",
+  "name": "hoopla",
+  "version": "1.0.0",
+  "description": "oi",
   "main": "index.js",
-  "scripts": {
-    "test": ""
-  },
-  "keywords": [
-    "discord",
-    "bot",
-    "discordbot"
-  ],
-  "author": "iCrawl",
-  "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.1.0",
-    "opusscript": "0.0.3",
-    "simple-youtube-api": "^3.0.0",
- "ffmpeg-binaries": "^3.2.2-3",
-    "ytdl-core": "^0.16.0"
+    "accuweather-simple": "^0.1.0",
+    "ms": "^2.1.1",
+    "discord.js": "^11.3.2",
+    "google": "^2.1.0",
+    "util": "^0.11.0",
+    "google-translate-api": "^2.3.0",
+    "jimp": "^0.2.28",
+    "ytdl-core": "^0.20.4",
+    "yt-search": "^0.1.4",
+    "opusscript": "^0.0.6",
+    "moment": "^2.22.1",
+    "steamapi": "^2.0.2",
+  "simple-youtube-api": "^3.0.0",
+    "ffmpeg-binaries": "^4.0.0",
+    "weather-js": "^2.0.0"
   },
-  "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-aqua": "^1.0.0"
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "aqua",
-    "rules": {
-      "no-console": 0
-    }
-  }
+  "author": "eu",
+  "license": "ISC"
 }
