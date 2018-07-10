@@ -145,6 +145,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
 	console.log(video2)
+
 	const song = {
 		id: video.id,
 		title: Util.escapeMarkdown(video.title),
@@ -182,6 +183,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	return undefined;
 }
 let info2 = await ytdl.getInfo('https://www.youtube.com/watch?v='+song.id)
+console.log(info2)
 function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 
