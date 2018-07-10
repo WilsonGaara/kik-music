@@ -46,6 +46,7 @@ client.on('message', async msg => { // eslint-disable-line
 			const playlist = await youtube.getPlaylist(url);
 			const videos = await playlist.getVideos();
 			for (const video of Object.values(videos)) {
+
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
@@ -180,7 +181,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	}
 	return undefined;
 }
-
+let info2 = await ytdl.getInfo('https://www.youtube.com/watch?v='+song.id)
 function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 
