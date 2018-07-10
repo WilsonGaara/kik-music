@@ -54,7 +54,7 @@ client.on('message', async msg => { // eslint-disable-line
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
-var info2 = await ytdl.getInfo('https://www.youtube.com/watch?v='+video.id)
+
 			} catch (error) {
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
@@ -145,8 +145,7 @@ var info2 = await ytdl.getInfo('https://www.youtube.com/watch?v='+video.id)
 async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
-	console.log(video2)
-console.log(info2)
+	
 	const song = {
 		id: video.id,
 		title: Util.escapeMarkdown(video.title),
