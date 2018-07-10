@@ -64,7 +64,7 @@ client.on('message', async msg => { // eslint-disable-line
 					.setDescription(videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n'))
 					.setTimestamp()
 					.setFooter('Por favor envie um número para selecionar a música de 1 à 10.', msg.author.displayAvatarURL)
-						return msg.channel.send(emb2)
+						 msg.channel.send(emb2)
 	
 					
 					// eslint-disable-next-line max-depth
