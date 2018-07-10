@@ -33,7 +33,7 @@ client.on('message', async msg => { // eslint-disable-line
 
 	if (command === 'play') {
 		const voiceChannel = msg.member.voiceChannel;
-		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+		if (!voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro ao se conectar no canal de voz');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
 			return msg.channel.send('<:err:449743511391305748> **|** Vish... Parece que não tenho a tal permissão de `CONNECT`');
@@ -154,8 +154,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	if (!serverQueue) {
 		const queueConstruct = {
 			textChannel: msg.channel,
-			voiceChannel: message.member.voiceChannel,
-			// voiceChannel: voiceChannel,
+			voiceChannel: voiceChannel,
 			connection: null,
 			songs: [],
 			volume: 3,
