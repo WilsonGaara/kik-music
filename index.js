@@ -82,7 +82,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
- var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+video.id)
+ var mal = await youtube.getInfo(url)
 console.log(mal)
 				} catch (err) {
 					console.error(err);
