@@ -32,6 +32,7 @@ client.on('message', async msg => { // eslint-disable-line
 	command = command.slice(PREFIX.length)
 
 	if (command === 'play') {
+if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais populares.')
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro ao se conectar no canal de voz');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
