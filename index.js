@@ -82,6 +82,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+ var mal = youtube.getInfo("https://www.youtube.com/watch?v="+videos[videoIndex - 1].id)
 				} catch (err) {
 					console.error(err);
 					return msg.channel.send('👁 Deculpe, mas eu não encontrei nenhum resultado...');
@@ -110,9 +111,9 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send('✅ **|** Alterei o volume para: '+args[1]);
 	} else if (command === 'np') {
- var mal1 = await youtube.getInfo("https://www.youtube.com/watch?v="+serverQueue.songs[1].id)
+ 
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
-console.log(mal1)
+
 		return msg.channel.send(`💿 **|** Tocando agora: **${serverQueue.songs[0].title}** `);
 
 	} else if (command === 'queue') {
@@ -207,8 +208,8 @@ function play(guild, song) {
 		})
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
- var mal = youtube.getInfo("https://www.youtube.com/watch?v="+song.id)
- console.log(mal)
+
+
 	serverQueue.textChannel.send('📀 **|** Eu coloquei para tocar: `'+song.title+'`');
 }
 
