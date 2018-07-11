@@ -85,7 +85,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					return msg.channel.send('👁 Deculpe, mas eu não encontrei nenhum resultado...');
 				}
 			}
-			return handleVideo(video, msg, voiceChannel);
+			return handleVideo(video, msg, voiceChannel, mal);
 		}
 	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
@@ -142,7 +142,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 	return undefined;
 });
 
-async function handleVideo(video, msg, voiceChannel, playlist = false) {
+async function handleVideo(video, msg, mal, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
 	console.log(mal)
