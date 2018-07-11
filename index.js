@@ -55,12 +55,12 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
-                                     var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+video.id)
+                                
                                 
 			} catch (error) {
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
-                                      var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+video.id)
+                                    
 					let index = 0;
 					var emb2 = new Discord.RichEmbed()
 					.setAuthor('Seleção de músicas', client.user.avatarURL)
@@ -87,7 +87,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					return msg.channel.send('👁 Deculpe, mas eu não encontrei nenhum resultado...');
 				}
 			}
-			return handleVideo(video, mal, msg, voiceChannel);
+			return handleVideo(video, msg, voiceChannel);
 		}
 	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
@@ -110,8 +110,11 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send('✅ **|** Alterei o volume para: '+args[1]);
 	} else if (command === 'np') {
+ var mal1 = await youtube.getInfo("https://www.youtube.com/watch?v="+serverQueue.songs[1].id)
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
-		return msg.channel.send(`💿 **|** Tocando agora: **${serverQueue.songs[0].title}**`);
+console.log(mal1)
+		return msg.channel.send(`💿 **|** Tocando agora: **${serverQueue.songs[0].title}** `);
+
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		let index2 = 0;
@@ -144,10 +147,10 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 	return undefined;
 });
 
-async function handleVideo(video, mal, msg, voiceChannel, playlist = false) {
+async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
-	console.log(mal)
+
 	const song = {
 		id: video.id,
 		title: Util.escapeMarkdown(video.title),
@@ -204,7 +207,8 @@ function play(guild, song) {
 		})
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-
+ var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+song.id)
+ console.log(mal)
 	serverQueue.textChannel.send('📀 **|** Eu coloquei para tocar: `'+song.title+'`');
 }
 
