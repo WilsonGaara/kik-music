@@ -109,7 +109,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		return msg.channel.send('✅ **|** Alterei o volume para: '+args[1]);
 	} else if (command === 'np') {
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
-		return msg.channel.send(`💿 **|** Tocando agora: * *${serverQueue.songs[0].title}**`);
+		return msg.channel.send(`💿 **|** Tocando agora: **${serverQueue.songs[0].title}**`);
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		let index2 = 0;
