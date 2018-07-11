@@ -55,10 +55,11 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
-                                var mal = await youtube.getInfo(url)
+                                
 			} catch (error) {
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
+                                      var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+video.id)
 					let index = 0;
 					var emb2 = new Discord.RichEmbed()
 					.setAuthor('Seleção de músicas', client.user.avatarURL)
@@ -85,7 +86,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					return msg.channel.send('👁 Deculpe, mas eu não encontrei nenhum resultado...');
 				}
 			}
-			return handleVideo(video, msg, voiceChannel, mal);
+			return handleVideo(video, msg, voiceChannel);
 		}
 	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
@@ -142,7 +143,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 	return undefined;
 });
 
-async function handleVideo(video, msg, mal, voiceChannel, playlist = false) {
+async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
 	console.log(mal)
