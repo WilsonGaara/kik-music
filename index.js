@@ -207,7 +207,7 @@ function play(guild, song) {
 		})
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
- var mal = await youtube.getInfo("https://www.youtube.com/watch?v="+song.id)
+ var mal = youtube.getInfo("https://www.youtube.com/watch?v="+song.id)
  console.log(mal)
 	serverQueue.textChannel.send('📀 **|** Eu coloquei para tocar: `'+song.title+'`');
 }
