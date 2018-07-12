@@ -90,8 +90,19 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 				}
 			}
 			return handleVideo(video, msg, voiceChannel);
-		}
-	} else if (command === 'skip') {
+        }
+    } else if (command === 'queue') {
+		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
+		let index2 = 0;
+	const hastebin = require('hastebin-gen');
+hastebin(serverQueue.songs.map(song => ` - ${song.title}`).join('\n'), "js").then(r => {
+  
+
+	console.log(serverQueue)
+	msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
+
+    })
+} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
@@ -103,7 +114,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
 	} else if (command === 'volume') {
-		if(args[1] < 1) return msg.reply('🔈 **|** O volume não pode ser menor que o número 1(um) para o conforto de todos.')
+		if(args[1] < 1) return msg.reply('🔇 **|** O volume não pode ser menor que o número 1(um) para o conforto de todos.')
 		if(args[1] > 8) return msg.reply('🔈 **|** O volume não pode ser maior que o número 8(oito) para o conforto de todos.')
 		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
@@ -116,20 +127,6 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 
 		return msg.channel.send(`💿 **|** Tocando agora: **${serverQueue.songs[0].title}** `);
-
-	} else if (command === 'queue') {
-		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
-		let index2 = 0;
-	const hastebin = require('hastebin-gen');
-hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n'), "js").then(r => {
-  
-
-	
-	msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
-
-})
-
-
 	 } else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
