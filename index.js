@@ -126,8 +126,10 @@ hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n')
 
 	
 	
-		return msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
-}).catch(console.error);
+		 msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
+
+return undefined;
+});
 
 
 
