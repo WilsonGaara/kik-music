@@ -111,7 +111,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send('✅ **|** Alterei o volume para: '+args[1]);
-	}) else if (command === 'np') {
+	} else if (command === 'np') {
  
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 
@@ -127,12 +127,10 @@ hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n')
 	
 	msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
 
-}
-return undefined;
+})
 
 
-
-	} else if (command === 'pause') {
+	 } else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
@@ -149,8 +147,8 @@ return undefined;
 	}
 
 	return undefined;
-});
 
+})
 async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
