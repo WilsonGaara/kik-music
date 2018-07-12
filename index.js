@@ -189,7 +189,7 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 
 function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
-    if (serverqueue.voiceChannel.bitrate > 64) {
+    if (serverQueue.voiceChannel.bitrate > 64) {
 		serverQueue.voiceChannel.leave();
 		queue.delete(guild.id);
 		return serverQueue.textChannel.send('🔇 **|** Desculpe mas eu não consigo reproduzir a mais de 64 de bitrate, reduza para poder usar meu serviço de música.')
