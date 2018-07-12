@@ -126,10 +126,9 @@ hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n')
 
 	
 	
-		 msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
+		return msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
 
-return undefined;
-});
+
 
 
 
@@ -151,7 +150,7 @@ return undefined;
 
 	return undefined;
 });
-
+})
 async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
