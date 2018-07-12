@@ -121,12 +121,12 @@ console.log(youtube)
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		let index2 = 0;
 	const hastebin = require('hastebin-gen');
-hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n')}`, "js").then(r => {
+hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n'), "js").then(r => {
   
 
 	
 	
-		return msg.channel.send(`📄 **|** Gerei um link hastebin dessa fila de músicas`)
+		return msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
 }).catch(console.error);
 
 return undefined;
