@@ -83,7 +83,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 
-console.log(youtube)
+
 				} catch (err) {
 					console.error(err);
 					return msg.channel.send('👁 Deculpe, mas eu não encontrei nenhum resultado...');
@@ -111,7 +111,7 @@ console.log(youtube)
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send('✅ **|** Alterei o volume para: '+args[1]);
-	} else if (command === 'np') {
+	}) else if (command === 'np') {
  
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 
@@ -150,7 +150,7 @@ hastebin(serverQueue.songs.map(song => `${++index2} - ${song.title}`).join('\n')
 
 	return undefined;
 });
-})
+
 async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
