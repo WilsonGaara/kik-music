@@ -120,15 +120,16 @@ console.log(youtube)
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		let index2 = 0;
-		var emb = new Discord.RichEmbed()
-	.setAuthor('Fila de músicas', client.user.avatarURL)
-	.setDescription(serverQueue.songs.map(song => `**${++index2}** - ${song.title}`).join('\n'))
-	.setTimestamp()
-	.setFooter('Música', msg.author.displayAvatarURL)
-		return msg.channel.send(emb)
+	const hastebin = require('hastebin-gen');
+hastebin(`${serverQueue.songs.map(song => `${++index2}` - ${song.title}`).join('\n')}`, "js").then(r => {
+  
 
+	
+	
+		return msg.channel.send(`📄 **|** Gerei um link hastebin dessa fila de músicas`)
+}).catch(console.error);
 
-
+return undefined;
 
 	} else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
