@@ -138,7 +138,7 @@ hastebin(serverQueue.songs.map(song => ` - ${song.title}`).join('\n'), "js").the
  } else if (command === 'repetir') {
 		if (serverQueue && serverQueue.playing) {
 			console.log(serverQueue)
-			serverQueue.connectTimeout_repeat = true;
+			serverQueue.connection.dispatcher_repeat = serverQueue
 			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
 		}
 return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
@@ -148,7 +148,7 @@ return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!p
 			serverQueue.connection.dispatcher.resume();
 			return msg.channel.send('▶ **|** A música está sendo resumida. Aguarde.');
 		}
-		return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
+		return msg.channel.send('<:err:449743511391305748> **|** Ei, aconteceu algo inesperado.');
 	}
 
 	return undefined;
