@@ -52,6 +52,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
 console.log(playlist)
+console.log(videos)
 			return msg.channel.send('💾 **|** Hmm. Verifiquei `'+playlist.title+'` como uma certa lista de reprodução, vamos tocar!');
 		} else {
 			try {
