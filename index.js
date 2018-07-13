@@ -135,6 +135,13 @@ hastebin(serverQueue.songs.map(song => ` - ${song.title}`).join('\n'), "js").the
 			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
 		}
 		return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
+ } else if (command === 'pause') {
+		if (serverQueue && serverQueue.playing) {
+			console.log(serverQueue)
+			serverQueue.connection.dispatcher.loop = true;
+			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
+		}
+return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 	} else if (command === 'resume') {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
