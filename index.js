@@ -51,6 +51,7 @@ if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais pop
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
+console.log(playlist)
 			return msg.channel.send('💾 **|** Hmm. Verifiquei `'+playlist.title+'` como uma certa lista de reprodução, vamos tocar!');
 		} else {
 			try {
