@@ -189,7 +189,13 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return;
-		else return msg.channel.send('📀 **|** Eu coloquei na fila: `'+song.title+'`\n📀 **|** Quer ver a fila? Use k!queue');
+const Discord2 = require('discord.js')
+const embedbla = new Discord2.RichEmbed
+.setAuthor(`__${msg.author.tag} adicionou músicas à lista de reprodução__`)
+.setDescription(`<💿> | ${song.title}`)
+.setTimestamp()
+.setFooter(`Música`, msg.author.displayAvatarURL)
+		else return msg.channel.send({ embed : embedbla})
 	}
 	return undefined;
 }
