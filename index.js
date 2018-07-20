@@ -193,8 +193,8 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 
 
 const embedbla = new Discord2.RichEmbed()
-.setAuthor(`__${msg.author.tag} adicionou músicas à lista de reprodução__`)
-.setDescription(`<💿> | ${song.title}`)
+.setTitle(`__${msg.author.tag} adicionou músicas à lista de reprodução__`)
+.setDescription(`<💿> **|** __${song.title}__`)
 .setTimestamp()
 .setFooter(`Música`, msg.author.displayAvatarURL)
 		 return msg.channel.send(embedbla)
