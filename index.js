@@ -186,11 +186,12 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 			return msg.channel.send(`<:err:449743511391305748> **|** Um erro ocorreu: ${error}`);
 		}
 	} else {
+		const Discord2 = require('discord.js')
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return;
-else
-const Discord2 = require('discord.js')
+
+
 const embedbla = new Discord2.RichEmbed()
 .setAuthor(`__${msg.author.tag} adicionou músicas à lista de reprodução__`)
 .setDescription(`<💿> | ${song.title}`)
