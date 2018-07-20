@@ -190,12 +190,12 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 		console.log(serverQueue.songs);
 		if (playlist) return;
 const Discord2 = require('discord.js')
-const embedbla = new Discord2.RichEmbed
+const embedbla = new Discord2.RichEmbed()
 .setAuthor(`__${msg.author.tag} adicionou músicas à lista de reprodução__`)
 .setDescription(`<💿> | ${song.title}`)
 .setTimestamp()
 .setFooter(`Música`, msg.author.displayAvatarURL)
-		else return msg.channel.send({ embed : embedbla})
+		else return msg.channel.send(embedbla)
 	}
 	return undefined;
 }
