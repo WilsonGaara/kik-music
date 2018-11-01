@@ -222,7 +222,7 @@ quality: 'lowest',
  format: '18', 
 lang: 'br'
  })
-	const dispatcher = serverQueue.connection.playStream(bla))
+	const dispatcher = serverQueue.connection.playStream(bla)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
