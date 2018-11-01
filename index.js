@@ -205,7 +205,7 @@ const embedbla = new Discord2.RichEmbed()
 }
 
 
-function play(guild, song) {
+function play(guild, song, bla) {
 	const serverQueue = queue.get(guild.id);
     if (serverQueue.voiceChannel.bitrate > 64) {
 		serverQueue.voiceChannel.leave();
