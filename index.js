@@ -34,10 +34,10 @@ client.on('message', async msg => { // eslint-disable-line
 	if (command === 'play') {
 if(args.length < 1) msg.reply('⬇ **|** Agora irei mostrar as músicas mais populares.')
 		const voiceChannel = msg.member.voiceChannel;
-		if (!voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro ao se conectar no canal de voz');
+		if (!voiceChannel) return msg.channel.send(':x: **|** Ocorreu um erro ao se conectar no canal de voz');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
 		if (!permissions.has('CONNECT')) {
-			return msg.channel.send('<:err:449743511391305748> **|** Vish... Parece que não tenho a tal permissão de `CONNECT`');
+			return msg.channel.send(':x: **|** Vish... Parece que não tenho a tal permissão de `CONNECT`');
 		}
 		if (!permissions.has('SPEAK')) {
 			return msg.channel.send('🤐 **|** Ouch, eu não posso falar como assim?! Preciso da permissão de `SPEAK`');
@@ -95,12 +95,12 @@ console.log(videos)
         }
   
 } else if (command === 'skip') {
-		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
+		if (!msg.member.voiceChannel) return msg.channel.send(':x: **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		serverQueue.connection.dispatcher.end('Skip command has been used!');
 		return undefined;
 	} else if (command === 'stop') {
-		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
+		if (!msg.member.voiceChannel) return msg.channel.send(':x: **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
@@ -108,7 +108,7 @@ console.log(videos)
 	} else if (command === 'volume') {
 		if(args[1] < 1) return msg.reply('🔇 **|** O volume não pode ser menor que o número 1(um) para o conforto de todos.')
 		if(args[1] > 8) return msg.reply('🔈 **|** O volume não pode ser maior que o número 8(oito) para o conforto de todos.')
-		if (!msg.member.voiceChannel) return msg.channel.send('<:err:449743511391305748> **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
+		if (!msg.member.voiceChannel) return msg.channel.send(':x: **|** Ocorreu um erro inesperado ao conectar-se em um canal de voz.');
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		if (!args[1]) return msg.channel.send('🔈 **|** O volume atual é: '+serverQueue.volume);
 		serverQueue.volume = args[1];
@@ -183,7 +183,7 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 		} catch (error) {
 			console.error(`I could not join the voice channel: ${error}`);
 			queue.delete(msg.guild.id);
-			return msg.channel.send(`<:err:449743511391305748> **|** Um erro ocorreu: ${error}`);
+			return msg.channel.send(`:x: **|** Um erro ocorreu: ${error}`);
 		}
 	} else {
 		const Discord2 = require('discord.js')
@@ -212,12 +212,17 @@ function play(guild, song) {
 	}
 	if (!song) {
 		serverQueue.voiceChannel.leave();
-		queue.delete(guild.id);
+		
 		return;
 	}
 	console.log(serverQueue.songs);
-
-	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+const bla = ytdl(song.url, {
+ filter: 'audioonly',
+quality: 'lowest',
+ format: '18', 
+lang: 'br'
+ })
+	const dispatcher = serverQueue.connection.playStream(bla))
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
