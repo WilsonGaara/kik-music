@@ -122,12 +122,13 @@ console.log(videos)
     } else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 		let index2 = 0;
-	const hastebin = require('hastebin-gen');
-hastebin(serverQueue.songs.map(song => ` - ${song.title}`).join('\n'), "js").then(r => {
-  
-	msg.channel.send(`📄 **|** Gerei um link dessa fila de músicas: ${r}`)
+	
+msg.channel.send(`
+__**Song queue:**__
 
-    })
+${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
+return undefined;
+ 
 	 } else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
@@ -135,12 +136,7 @@ hastebin(serverQueue.songs.map(song => ` - ${song.title}`).join('\n'), "js").the
 			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
 		}
 		return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
- } else if (command === 'repetir') {
-		if (serverQueue && serverQueue.playing) {
-			console.log(serverQueue)
-			serverQueue.connection.dispatcher_repeat = serverQueue
-			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
-		}
+
 return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 	} else if (command === 'resume') {
 		if (serverQueue && !serverQueue.playing) {
@@ -148,7 +144,7 @@ return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!p
 			serverQueue.connection.dispatcher.resume();
 			return msg.channel.send('▶ **|** A música está sendo resumida. Aguarde.');
 		}
-		return msg.channel.send('<:err:449743511391305748> **|** Ei, aconteceu algo inesperado.');
+		return msg.channel.send(':x: **|** Ei, aconteceu algo inesperado.');
 	}
 
 	return undefined;
@@ -160,16 +156,17 @@ async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 
 	const song = {
 		id: video.id,
-		title: Util.escapeMarkdown(video.title),
+		title: ytdl.getInfo(song.id).title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
-	};
+};
+
 	if (!serverQueue) {
 		const queueConstruct = {
 			textChannel: msg.channel,
 			voiceChannel: voiceChannel,
 			connection: null,
 			songs: [],
-			volume: 3,
+			volume: 5,
 			playing: true
 		};
 		queue.set(msg.guild.id, queueConstruct);
