@@ -153,15 +153,10 @@ return undefined;
 async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
-const bla = ytdl(`https://www.youtube.com/watch?v=${video.id}`, {
- filter: 'audioonly',
-quality: 'lowest',
- format: '18', 
-lang: 'br'
- })
+
 	const song = {
 		id: video.id,
-		title: await ytdl.getInfo(`https://www.youtube.com/watch?v=${video.id}`).title,
+		title: video.title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
 };
 
@@ -205,7 +200,7 @@ const embedbla = new Discord2.RichEmbed()
 }
 
 
-function play(guild, song, bla) {
+function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
     if (serverQueue.voiceChannel.bitrate > 64) {
 		serverQueue.voiceChannel.leave();
@@ -214,7 +209,12 @@ function play(guild, song, bla) {
 	}
 	
 	console.log(serverQueue.songs);
-
+const bla = ytdl(song.url, {
+ filter: 'audioonly',
+quality: 'lowest',
+ format: '18', 
+lang: 'br'
+ })
 	const dispatcher = serverQueue.connection.playStream(bla)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
