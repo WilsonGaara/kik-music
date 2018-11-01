@@ -124,7 +124,7 @@ console.log(videos)
 		let index2 = 0;
 	
 msg.channel.send(`
-__**Song queue:**__
+__**LISTA**__
 
 ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}`)
 return undefined;
@@ -136,8 +136,8 @@ return undefined;
 			return msg.channel.send('⏸ **|** Agora a música tocando está pausada, use k!resume para resumir e continuar.');
 		}
 		return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
+	
 
-return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!play');
 	} else if (command === 'resume') {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
@@ -153,10 +153,15 @@ return msg.channel.send('🎧 **|** Nada tocando. Que tal usar o meu comando k!p
 async function handleVideo(video,  msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
-
+const bla = ytdl(`https://www.youtube.com/watch?v=${video.id}`, {
+ filter: 'audioonly',
+quality: 'lowest',
+ format: '18', 
+lang: 'br'
+ })
 	const song = {
 		id: video.id,
-		title: ytdl.getInfo(song.id).title,
+		title: await ytdl.getInfo(`https://www.youtube.com/watch?v=${video.id}`).title,
 		url: `https://www.youtube.com/watch?v=${video.id}`
 };
 
@@ -209,12 +214,7 @@ function play(guild, song) {
 	}
 	
 	console.log(serverQueue.songs);
-const bla = ytdl(song.url, {
- filter: 'audioonly',
-quality: 'lowest',
- format: '18', 
-lang: 'br'
- })
+
 	const dispatcher = serverQueue.connection.playStream(bla)
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
@@ -226,7 +226,7 @@ lang: 'br'
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
 
-	serverQueue.textChannel.send('📀 **|** Eu coloquei para tocar: `'+song.title+'`');
+	serverQueue.textChannel.send(`🎵 Tocando agora: ${song.title}\nURL: ${song.url}`);
 }
 
 client.login(process.env.TOKEN);
