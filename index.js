@@ -207,11 +207,7 @@ function play(guild, song) {
 		queue.delete(guild.id);
 		return serverQueue.textChannel.send('🔇 **|** Desculpe mas eu não consigo reproduzir a mais de 64 de bitrate, reduza para poder usar meu serviço de música.')
 	}
-	if (!song) {
-		serverQueue.voiceChannel.leave();
-		
-		return;
-	}
+	
 	console.log(serverQueue.songs);
 const bla = ytdl(song.url, {
  filter: 'audioonly',
